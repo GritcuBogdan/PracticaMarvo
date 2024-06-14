@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #40513B;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.practicamrmarvo.ShowFilialaController">
+   <children>
+      <BorderPane layoutX="-2.0" layoutY="-3.0" prefHeight="807.0" prefWidth="1206.0">
+         <center>
+            <AnchorPane fx:id="mainAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E5D9B6;" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutX="46.0" layoutY="51.0" prefHeight="578.0" prefWidth="767.0" style="-fx-background-color: #A4BE7B; -fx-border-color: #5F7161; -fx-background-radius: 50; -fx-border-radius: 50;">
+                     <children>
+                        <TableView fx:id="filialaTableView" layoutX="51.0" layoutY="28.0" prefHeight="522.0" prefWidth="666.0">
+                           <columns>
+                              <TableColumn fx:id="numeColumn" prefWidth="119.0" text="Nume" />
+                              <TableColumn fx:id="adresaColumn" minWidth="0.0" prefWidth="106.0" text="Adresa" />
+                              <TableColumn fx:id="telefonColumn" minWidth="0.0" prefWidth="132.0" text="Telefon" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="editAnchorPane" layoutX="46.0" layoutY="10.0" prefHeight="30.0" prefWidth="767.0" style="-fx-background-color: #E5D9B6;" visible="false">
+                     <children>
+                        <Label fx:id="editLabel" layoutX="10.0" layoutY="5.0" text="Aveti acces la editarea filialelor" textFill="RED">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+
+                  <AnchorPane layoutX="857.0" layoutY="43.0" prefHeight="594.0" prefWidth="310.0" style="-fx-background-color: #285430;">
+                     <children>
+                        <ImageView fx:id="addButton" fitHeight="85.0" fitWidth="109.0" layoutX="23.0" layoutY="24.0" onMouseClicked="#switchToInput" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../add-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="updateButton" fitHeight="85.0" fitWidth="109.0" layoutX="23.0" layoutY="162.0" onMouseClicked="#enableEditing" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../update-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="deleteButton" fitHeight="85.0" fitWidth="109.0" layoutX="23.0" layoutY="297.0" onMouseClicked="#enableDelete" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../delete-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="137.0" layoutY="49.0" text="Add" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="137.0" layoutY="187.0" text="Update" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="137.0" layoutY="322.0" text="Delete" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <AnchorPane prefHeight="113.0" prefWidth="1206.0" style="-fx-background-color: #285430;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="homeButton" fitHeight="85.0" fitWidth="80.0" layoutX="30.0" layoutY="27.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../home-page-white-icon-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="112.0" fitWidth="117.0" layoutX="1080.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../Marvo-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="486.0" layoutY="45.0" text="Afișare filiale" textFill="WHITE">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+      </BorderPane>
+   </children>
+   <AnchorPane fx:id="deleteControls" layoutX="857.0" layoutY="600.0" prefHeight="100.0" prefWidth="264.0" style="-fx-background-color: #52734D;" visible="false">
+      <children>
+         <Label fx:id="numeLabel" layoutX="10.0" layoutY="10.0" text="Nume:" textFill="WHITE" />
+         <TextField fx:id="numeTextField" layoutX="60.0" layoutY="10.0" />
+         <Button fx:id="submitButton" layoutX="10.0" layoutY="50.0" onAction="#handleDeleteSubmit" text="Submit" />
+      </children>
+   </AnchorPane>
+</AnchorPane>

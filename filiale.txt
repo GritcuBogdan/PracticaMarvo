@@ -1,0 +1,2 @@
+Filiala [nume=Filiala1, adresa=Botanica,str.Cuza-Voda 12, telefon=068984778]
+Filiala [nume=Filiala 2, adresa=Buiucani,str.Alba-Iulia 14/2, telefon=3333333]

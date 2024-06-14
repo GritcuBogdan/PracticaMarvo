@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #E5D9B6;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.practicamrmarvo.FilialaController">
+   <children>
+      <AnchorPane prefHeight="111.0" prefWidth="1200.0" style="-fx-background-color: #285430;">
+         <children>
+            <ImageView fx:id="homeButton" fitHeight="76.0" fitWidth="88.0" layoutX="14.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#backToHome">
+               <image>
+                  <Image url="@img/home-page-white-icon-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="109.0" fitWidth="110.0" layoutX="1077.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Marvo-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="395.0" layoutY="52.0" text="Adaugă o filială nouă" textFill="WHITE">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="563.0" layoutY="207.0" text="Nume:">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numeInput" layoutX="488.0" layoutY="268.0" prefHeight="25.0" prefWidth="224.0" />
+      <Label layoutX="558.0" layoutY="327.0" text="Adresa:">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="adresaInput" layoutX="488.0" layoutY="391.0" prefHeight="25.0" prefWidth="224.0" />
+      <Label layoutX="556.0" layoutY="455.0" text="Telefon:">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorLabel2" layoutX="488.0" layoutY="555.0" prefHeight="25.0" prefWidth="224.0" textFill="red" />
+      <TextField fx:id="telefonInput" layoutX="488.0" layoutY="523.0" prefHeight="25.0" prefWidth="224.0" />
+      <Button fx:id="saveFilialaButton" layoutX="487.0" layoutY="589.0" mnemonicParsing="false" onAction="#saveFiliala" prefHeight="43.0" prefWidth="224.0" text="Submit" />
+      <Label fx:id="messageLabel" layoutX="470.0" layoutY="635.0" prefHeight="25.0" prefWidth="300" text="" textFill="red" >
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+
+   </children>
+</AnchorPane>
