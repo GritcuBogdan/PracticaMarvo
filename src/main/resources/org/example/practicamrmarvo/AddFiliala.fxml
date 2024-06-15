@@ -46,10 +46,10 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="errorLabel2" layoutX="488.0" layoutY="555.0" prefHeight="25.0" prefWidth="224.0" textFill="red" />
+      <Label fx:id="errorLabel2" layoutX="488.0" layoutY="503.0" prefHeight="25.0" prefWidth="224.0" textFill="red" />
       <TextField fx:id="telefonInput" layoutX="488.0" layoutY="523.0" prefHeight="25.0" prefWidth="224.0" />
       <Button fx:id="saveFilialaButton" layoutX="487.0" layoutY="589.0" mnemonicParsing="false" onAction="#saveFiliala" prefHeight="43.0" prefWidth="224.0" text="Submit" />
-      <Label fx:id="messageLabel" layoutX="470.0" layoutY="635.0" prefHeight="25.0" prefWidth="300" text="" textFill="red" >
+      <Label fx:id="messageLabel" layoutX="470.0" layoutY="635.0" prefHeight="25.0" prefWidth="300" text="" textFill="GREEN">
          <font>
             <Font size="16.0" />
          </font>

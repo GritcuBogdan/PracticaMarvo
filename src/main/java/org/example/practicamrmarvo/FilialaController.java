@@ -28,14 +28,19 @@ public class FilialaController {
 
     @FXML
     private TextField numeInput;
+
     @FXML
     private TextField adresaInput;
+
     @FXML
     private TextField telefonInput;
+
     @FXML
     private Label errorLabel2;
+
     @FXML
     private Label messageLabel;
+
     @FXML
     private Button saveFilialaButton;
 
@@ -56,11 +61,16 @@ public class FilialaController {
 
     @FXML
     private void initialize() {
+        // Set up text formatter for telefonInput
         telefonInput.setTextFormatter(new TextFormatter<>(forceDigitsOnly()));
+
+        // Set action for saveFilialaButton
         saveFilialaButton.setOnAction(e -> saveFiliala());
+
+        // Set mouse event handlers for homeButton
         homeButton.setOnMouseClicked(this::backToHome);
-        homeButton.setOnMouseEntered(this::onMouseEnteredImage);
-        homeButton.setOnMouseExited(this::onMouseExitedImage);
+//        homeButton.setOnMouseEntered(this::onMouseEnteredImage);
+//        homeButton.setOnMouseExited(this::onMouseExitedImage);
     }
 
     @FXML
@@ -78,11 +88,11 @@ public class FilialaController {
         return change -> {
             String newText = change.getControlNewText();
             if (newText.matches("\\d*")) {
-                errorLabel2.setText("");
+                errorLabel2.setText(""); // Clear error message
                 return change;
             } else {
-                errorLabel2.setText("Puteți introduce doar cifre!");
-                return null;
+                errorLabel2.setText("Introduceți cifre!"); // Display error message
+                return null; // Reject the change
             }
         };
     }
@@ -105,7 +115,7 @@ public class FilialaController {
                 writer.write(filiala.toString());
                 writer.newLine();
             } catch (IOException e) {
-                System.out.println("Eroare la scrierea in fisierul filiale.txt");
+                System.out.println("Eroare la scrierea în fișierul filiale.txt");
             }
 
             messageLabel.setText("Filiala a fost adăugată cu succes!");
@@ -117,20 +127,19 @@ public class FilialaController {
         }
     }
 
+//    @FXML
+//    private void onMouseEnteredImage(MouseEvent event) {
+//        ImageView imageView = (ImageView) event.getSource();
+//        imageView.setImage(new Image("/org/example/practicamrmarvo/img/home-page-grey-icon-removebg-preview.png"));
+//    }
+//
+//    @FXML
+//    private void onMouseExitedImage(MouseEvent event) {
+//        ImageView imageView = (ImageView) event.getSource();
+//        imageView.setImage(new Image("/org/example/practicamrmarvo/img/home-page-white-icon-removebg-preview.png"));
+//    }
+
     public static ArrayList<Filiala> getFilialeList() {
         return filialeList;
-    }
-
-
-    @FXML
-    private void onMouseEnteredImage(MouseEvent event) {
-        ImageView imageView = (ImageView) event.getSource();
-        imageView.setImage(new Image("/org/example/practicamrmarvo/img/home-page-grey-icon-removebg-preview.png"));
-    }
-
-    @FXML
-    private void onMouseExitedImage(MouseEvent event) {
-        ImageView imageView = (ImageView) event.getSource();
-        imageView.setImage(new Image("/org/example/practicamrmarvo/img/home-page-white-icon-removebg-preview.png"));
     }
 }

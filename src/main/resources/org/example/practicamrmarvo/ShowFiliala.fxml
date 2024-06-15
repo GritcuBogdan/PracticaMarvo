@@ -30,9 +30,9 @@
                   </AnchorPane>
                   <AnchorPane fx:id="editAnchorPane" layoutX="46.0" layoutY="10.0" prefHeight="30.0" prefWidth="767.0" style="-fx-background-color: #E5D9B6;" visible="false">
                      <children>
-                        <Label fx:id="editLabel" layoutX="10.0" layoutY="5.0" text="Aveti acces la editarea filialelor" textFill="RED">
+                        <Label fx:id="editLabel" layoutX="30" layoutY="5.0" text="Aveti acces la editarea filialelor" textFill="GREEN">
                            <font>
-                              <Font size="14.0" />
+                              <Font size="20" />
                            </font>
                         </Label>
                      </children>
@@ -98,11 +98,11 @@
          </top>
       </BorderPane>
    </children>
-   <AnchorPane fx:id="deleteControls" layoutX="857.0" layoutY="600.0" prefHeight="100.0" prefWidth="264.0" style="-fx-background-color: #52734D;" visible="false">
+   <AnchorPane fx:id="deleteControls" layoutX="857.0" layoutY="600.0" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: #285430;" visible="false">
       <children>
          <Label fx:id="numeLabel" layoutX="10.0" layoutY="10.0" text="Nume:" textFill="WHITE" />
          <TextField fx:id="numeTextField" layoutX="60.0" layoutY="10.0" />
-         <Button fx:id="submitButton" layoutX="10.0" layoutY="50.0" onAction="#handleDeleteSubmit" text="Submit" />
+         <Button fx:id="submitButton" layoutX="220.0" layoutY="10.0" onAction="#handleDeleteSubmit" text="Submit" />
       </children>
    </AnchorPane>
 </AnchorPane>

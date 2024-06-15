@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #E5D9B6;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #E5D9B6;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.practicamrmarvo.ClientController">
    <children>
       <AnchorPane layoutX="-5.0" prefHeight="97.0" prefWidth="1206.0" style="-fx-background-color: #285430;">
          <children>
-            <ImageView fitHeight="83.0" fitWidth="79.0" layoutX="28.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="homeButton" fitHeight="83.0" fitWidth="79.0" layoutX="28.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/home-page-white-icon-removebg-preview.png" />
                </image>
@@ -26,6 +29,132 @@
                   <Font size="36.0" />
                </font>
             </Label>
+         </children>
+      </AnchorPane>
+      <!-- Radio Buttons for Client Type -->
+      <RadioButton fx:id="clientFizicRadioButton" layoutX="540.0" layoutY="130.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="132.0" text="Client fizic">
+         <toggleGroup>
+            <ToggleGroup fx:id="clientTypeToggleGroup" />
+         </toggleGroup>
+         <font>
+            <Font size="17.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="clientJuridicRadioButton" layoutX="540.0" layoutY="170.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="132.0" text="Client juridic">
+         <toggleGroup>
+         </toggleGroup>
+         <font>
+            <Font size="17.0" />
+         </font>
+      </RadioButton>
+      <AnchorPane fx:id="clientFizicPane" layoutX="38.0" layoutY="120.0" prefHeight="647.0" prefWidth="445.0" style="-fx-background-color: #5F8D4E; -fx-background-radius: 50;" visible="false">
+         <children>
+            <AnchorPane layoutX="-6.0" prefHeight="85.0" prefWidth="451.0" style="-fx-background-color: #A4BE7B; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="98.0" layoutX="26.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/client-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="134.0" layoutY="17.0" text="Client fizic" textFill="WHITE">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="183.0" layoutY="98.0" text="Nume:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="numeInput" layoutX="108.0" layoutY="146.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="147.0" layoutY="171.0" text="Cod personal:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="codPersonalInput" layoutX="111.0" layoutY="219.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="179.0" layoutY="251.0" text="Adresa:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="adresaInput" layoutX="108.0" layoutY="299.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="176.0" layoutY="337.0" text="Telefon:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="telefonInput" layoutX="108.0" layoutY="389.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="130.0" layoutY="428.0" text="Număr depozite:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="numarDepoziteInput" layoutX="111.0" layoutY="476.0" prefHeight="25.0" prefWidth="224.0" />
+            <Button layoutX="108.0" layoutY="565.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="224.0" text="Submit" onAction="#handleSubmitClientFizic"/>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="clientJuridicPane" layoutX="708.0" layoutY="120.0" prefHeight="647.0" prefWidth="445.0" style="-fx-background-color: #5F8D4E; -fx-background-radius: 50;" visible="false">
+         <children>
+            <AnchorPane layoutX="-6.0" prefHeight="85.0" prefWidth="451.0" style="-fx-background-color: #A4BE7B; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="85.0" fitWidth="143.0" layoutX="26.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/lebank-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="134.0" layoutY="17.0" text="Client juridic" textFill="WHITE">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="159.0" layoutY="85.0" text="Cod Fiscal:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="codFiscalInput" layoutX="111.0" layoutY="121.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="166.0" layoutY="146.0" text="Denumire:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="denumireInput" layoutX="111.0" layoutY="182.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="138.0" layoutY="207.0" text="Tip proprietate:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tipProprietateInput" layoutX="108.0" layoutY="243.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="174.0" layoutY="268.0" text="Adresa:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="adresaJuridicaInput" layoutX="106.0" layoutY="320.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="168.0" layoutY="345.0" text="Telefon:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="telefonJuridicInput" layoutX="103.0" layoutY="393.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="98.0" layoutY="424.0" text="Nume administrator:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="numeAdministratorInput" layoutX="106.0" layoutY="466.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="123.0" layoutY="491.0" text="Persoana contact:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="persoanaContactInput" layoutX="103.0" layoutY="539.0" prefHeight="25.0" prefWidth="224.0" />
+            <Button layoutX="108.0" layoutY="604.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="224.0" text="Submit" onAction="#handleSubmitClientJuridic"/>
          </children>
       </AnchorPane>
    </children>

@@ -25,6 +25,8 @@ public class BankApp extends Application {
 
     @FXML
     private Button showFiliala;
+    @FXML
+    private Button showClienti;
 
     @Override
     public void start(Stage primaryStage) {
@@ -46,6 +48,8 @@ public class BankApp extends Application {
         }
     }
 
+
+
     @FXML
     private void initialize() {
         addFiliala.setOnAction(e -> {
@@ -60,6 +64,14 @@ public class BankApp extends Application {
             try {
                 switchToShowFiliala();
             } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        showClienti.setOnAction(e -> {
+            try {
+                showClienti();
+            }catch (Exception ex){
                 ex.printStackTrace();
             }
         });
@@ -80,6 +92,29 @@ public class BankApp extends Application {
         showFilialaController.setPrimaryStage(primaryStage);
         primaryStage.getScene().setRoot(root);
     }
+
+    public void switchToAddClient() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddClientFizic.fxml"));
+        Parent root = loader.load();
+        ClientController clientController = loader.getController();
+        clientController.setPrimaryStage(primaryStage);
+        primaryStage.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void showClienti() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowClienti.fxml"));
+            Parent root = loader.load();
+            ShowClientiController controller = loader.getController();
+            controller.setPrimaryStage(primaryStage);
+            primaryStage.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.out.println("Error loading ShowClienti.fxml");
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void onMouseEntered(MouseEvent event) {
         Button button = (Button) event.getSource();
