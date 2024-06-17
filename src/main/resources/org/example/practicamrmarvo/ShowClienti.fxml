@@ -98,12 +98,12 @@
             </TableView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="114.0" fitWidth="144.0" layoutX="499.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="114.0" fitWidth="144.0" layoutX="499.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true" fx:id="addButton" onMouseClicked="#handleAddClient">
          <image>
             <Image url="@img/add-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="114.0" fitWidth="144.0" layoutX="499.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="114.0" fitWidth="144.0" layoutX="499.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true" fx:id="updateButton" onMouseClicked="#handleUpdateTables">
          <image>
             <Image url="@img/update-removebg-preview.png" />
          </image>
@@ -126,7 +126,7 @@
          </font>
       </Label>
       <TextField layoutX="76.0" layoutY="717.0" fx:id="idnpInput" visible="false"/>
-      <Button layoutX="242.0" layoutY="717.0" mnemonicParsing="false" text="Submit" fx:id="submit1" visible="false"/>
+      <Button layoutX="242.0" layoutY="717.0" mnemonicParsing="false" text="Submit" fx:id="submit1" visible="false"  onAction="#handleDeleteClientFizic"/>
 
       <Label layoutX="865.0" layoutY="713.0" prefHeight="33.0" prefWidth="85.0" text="Cod fiscal:" fx:id="codFiscalLabel" visible="false">
          <font>
@@ -134,6 +134,6 @@
          </font>
       </Label>
       <TextField layoutX="960.0" layoutY="717.0" fx:id="codFiscalInput" visible="false"/>
-      <Button layoutX="1126.0" layoutY="717.0" mnemonicParsing="false" text="Submit" fx:id="submit2" visible="false"/>
+      <Button layoutX="1126.0" layoutY="717.0" mnemonicParsing="false" text="Submit" fx:id="submit2" visible="false" onAction="#handleDeleteClientJuridic"/>
    </children>
 </AnchorPane>

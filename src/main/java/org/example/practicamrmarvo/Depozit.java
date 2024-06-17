@@ -1,6 +1,6 @@
 package org.example.practicamrmarvo;
 
-class Depozit {
+public class Depozit {
     private String tip;
     private String denumire;
     private double procentAnual;

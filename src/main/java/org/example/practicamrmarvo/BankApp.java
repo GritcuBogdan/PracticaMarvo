@@ -21,6 +21,12 @@ public class BankApp extends Application {
     }
 
     @FXML
+    private Button showDepozite;
+
+    @FXML
+    private Button addDepozit;
+
+    @FXML
     private Button addFiliala;
 
     @FXML
@@ -75,7 +81,42 @@ public class BankApp extends Application {
                 ex.printStackTrace();
             }
         });
+
+        addDepozit.setOnAction(e ->{
+            try{
+                switchToAddDepozit();
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+
+        showDepozite.setOnAction(e -> {
+            try{
+                switchToShowDepozit();
+            }catch (Exception EX){
+                EX.printStackTrace();
+            }
+        });
+
     }
+
+
+    public void switchToShowDepozit() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowDepozit.fxml"));
+        Parent root = loader.load();
+        ShowDepozitController controller = loader.getController();
+        controller.setPrimaryStage(primaryStage);
+        primaryStage.getScene().setRoot(root);
+    }
+
+    public void switchToAddDepozit() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddDepozit.fxml"));
+        Parent root = loader.load();
+        DepozitController controller = loader.getController();
+        controller.setPrimaryStage(primaryStage);
+        primaryStage.getScene().setRoot(root);
+    }
+
 
     public void switchToAddFiliala() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddFiliala.fxml"));

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #E5D9B6;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.practicamrmarvo.ShowDepozitController">
+   <children>
+      <AnchorPane prefHeight="111.0" prefWidth="1200.0" style="-fx-background-color: #285430;">
+         <children>
+            <ImageView fx:id="homeButton" fitHeight="86.0" fitWidth="92.0" layoutX="14.0" layoutY="22.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/home-page-white-icon-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="109.0" fitWidth="110.0" layoutX="1077.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Marvo-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="430.0" layoutY="38.0" text="Afișează depozite" textFill="WHITE">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="33.0" layoutY="152.0" prefHeight="568.0" prefWidth="764.0" style="-fx-background-color: #A4BE7B; -fx-background-radius: 50;">
+         <children>
+            <TableView fx:id="depozitTableView" layoutX="22.0" layoutY="23.0" prefHeight="523.0" prefWidth="718.0">
+               <columns>
+                  <TableColumn fx:id="tipColumn" prefWidth="175.0" text="Tip" />
+                  <TableColumn fx:id="denumireColumn" prefWidth="244.0" text="Denumire" />
+                  <TableColumn fx:id="procentColumn" prefWidth="118.0" text="Procent anual" />
+                  <TableColumn fx:id="valutaColumn" prefWidth="180.0" text="Valuta" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="841.0" layoutY="152.0" prefHeight="568.0" prefWidth="324.0" style="-fx-background-color: #285430;">
+         <children>
+            <ImageView fx:id="addButton" fitHeight="86.0" fitWidth="86.0" layoutX="29.0" layoutY="38.0" onMouseClicked="#handleAddDepozit" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/add-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="updateButton" fitHeight="96.0" fitWidth="86.0" layoutX="29.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#enableEditing">
+               <image>
+                  <Image url="@img/update-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="updateButton1" fitHeight="98.0" fitWidth="79.0" layoutX="33.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/delete-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="179.0" layoutY="58.0" text="Add" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="157.0" layoutY="195.0" text="Update" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="163.0" layoutY="300.0" text="Delete" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="501.0" text="Denumire" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="denumireDeleteInput" layoutX="88.0" layoutY="499.0" />
+            <Button layoutX="251.0" layoutY="499.0" mnemonicParsing="false" text="Submit"  />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

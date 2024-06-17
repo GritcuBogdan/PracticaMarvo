@@ -10,13 +10,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -110,6 +110,27 @@ public class ShowClientiController {
     private TableView<ClientJuridic> clientJuridicTableView;
 
     @FXML
+    private ImageView addButton;
+
+    @FXML
+    private ImageView updateButton;
+
+
+    @FXML
+    private void handleAddClient() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddClientFizic.fxml"));
+            Parent root = loader.load();
+            ClientController controller = loader.getController();
+            controller.setPrimaryStage(primaryStage);
+            primaryStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
     private void backToHome() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StartForm.fxml"));
@@ -155,9 +176,128 @@ public class ShowClientiController {
         numeAdministratorColumn.setCellValueFactory(cellData -> cellData.getValue().numeAdministratorProperty());
         persoanaContactColumn.setCellValueFactory(cellData -> cellData.getValue().persoanaContactProperty());
 
+        clientFizicTableView.setEditable(false);
+        clientJuridicTableView.setEditable(false);
+
+
         // Load data from file into TableViews
         loadDataFromFile();
     }
+
+    @FXML
+    private void handleUpdateTables() {
+        // Enable editing for both tables
+        clientFizicTableView.setEditable(true);
+        clientJuridicTableView.setEditable(true);
+
+        // Set up cell factories for editable columns
+        setupEditableColumns();
+    }
+
+    private void setupEditableColumns() {
+        // ClientFizic columns
+        numeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        codPersonalColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        adresaColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        telefonColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        numarDepoziteColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+        // ClientJuridic columns
+        codFiscalColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        denumireColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        tipProprietateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        adresaJuridicColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        telefonJuridicColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        numeAdministratorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        persoanaContactColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        // Add commit edit event handlers to save data to file
+        numeColumn.setOnEditCommit(event -> {
+            event.getRowValue().setNume(event.getNewValue());
+            saveDataToFile();
+        });
+        codPersonalColumn.setOnEditCommit(event -> {
+            event.getRowValue().setCodPersonal(event.getNewValue());
+            saveDataToFile();
+        });
+        adresaColumn.setOnEditCommit(event -> {
+            event.getRowValue().setAdresa(event.getNewValue());
+            saveDataToFile();
+        });
+        telefonColumn.setOnEditCommit(event -> {
+            event.getRowValue().setTelefon(event.getNewValue());
+            saveDataToFile();
+        });
+        numarDepoziteColumn.setOnEditCommit(event -> {
+            event.getRowValue().setNumarDepozite(event.getNewValue());
+            saveDataToFile();
+        });
+
+        codFiscalColumn.setOnEditCommit(event -> {
+            event.getRowValue().setCodFiscal(event.getNewValue());
+            saveDataToFile();
+        });
+        denumireColumn.setOnEditCommit(event -> {
+            event.getRowValue().setDenumire(event.getNewValue());
+            saveDataToFile();
+        });
+        tipProprietateColumn.setOnEditCommit(event -> {
+            event.getRowValue().setTipProprietate(event.getNewValue());
+            saveDataToFile();
+        });
+        adresaJuridicColumn.setOnEditCommit(event -> {
+            event.getRowValue().setAdresa(event.getNewValue());
+            saveDataToFile();
+        });
+        telefonJuridicColumn.setOnEditCommit(event -> {
+            event.getRowValue().setTelefon(event.getNewValue());
+            saveDataToFile();
+        });
+        numeAdministratorColumn.setOnEditCommit(event -> {
+            event.getRowValue().setNumeAdministrator(event.getNewValue());
+            saveDataToFile();
+        });
+        persoanaContactColumn.setOnEditCommit(event -> {
+            event.getRowValue().setPersoanaContact(event.getNewValue());
+            saveDataToFile();
+        });
+    }
+
+
+    private void saveDataToFile() {
+        List<String> lines = new ArrayList<>();
+
+        // Collect data from clientFizicTableView
+        for (ClientFizic client : clientFizicTableView.getItems()) {
+            lines.add(formatClientFizic(client));
+        }
+
+        // Collect data from clientJuridicTableView
+        for (ClientJuridic client : clientJuridicTableView.getItems()) {
+            lines.add(formatClientJuridic(client));
+        }
+
+        // Write data to file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("clienti.txt"))) {
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String formatClientFizic(ClientFizic client) {
+        return String.format("ClientFizic [nume=%s, codPersonal=%s, adresa=%s, telefon=%s, numarDepozite=%d]",
+                client.getNume(), client.getCodPersonal(), client.getAdresa(), client.getTelefon(), client.getNumarDepozite());
+    }
+
+    private String formatClientJuridic(ClientJuridic client) {
+        return String.format("ClientJuridic [codFiscal=%s, denumire=%s, tipProprietate=%s, adresa=%s, telefon=%s, numeAdministrator=%s, persoanaContact=%s]",
+                client.getCodFiscal(), client.getDenumire(), client.getTipProprietate(), client.getAdresa(), client.getTelefon(), client.getNumeAdministrator(), client.getPersoanaContact());
+    }
+
 
     @FXML
     private void handleClientTypeChange() {
@@ -208,6 +348,134 @@ public class ShowClientiController {
         clientFizicTableView.setItems(clientFizicList);
         clientJuridicTableView.setItems(clientJuridicList);
     }
+
+    @FXML
+    private void handleDeleteClientJuridic() {
+        String codFiscalToDelete = codFiscalInput.getText();
+
+        if (codFiscalToDelete == null || codFiscalToDelete.isEmpty()) {
+            // Show an error message or handle empty input
+            return;
+        }
+
+        List<String> remainingLines = new ArrayList<>();
+        boolean found = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("clienti.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("ClientJuridic") && line.contains("codFiscal=" + codFiscalToDelete)) {
+                    found = true;
+                    continue; // Skip the line to be deleted
+                }
+                remainingLines.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (found) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("clienti.txt"))) {
+                for (String line : remainingLines) {
+                    writer.write(line);
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // Update the TableView
+            loadClientJuridicData();
+        } else {
+            // Show an error message or handle case where the codFiscal is not found
+        }
+    }
+
+    private void loadClientJuridicData() {
+        ObservableList<ClientJuridic> clientJuridicList = FXCollections.observableArrayList();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("clienti.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("ClientJuridic")) {
+                    ClientJuridic clientJuridic = parseClientJuridic(line);
+                    if (clientJuridic != null) {
+                        clientJuridicList.add(clientJuridic);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        clientJuridicTableView.setItems(clientJuridicList);
+    }
+
+
+
+    @FXML
+    private void handleDeleteClientFizic() {
+        String idnpToDelete = idnpInput.getText();
+
+        if (idnpToDelete == null || idnpToDelete.isEmpty()) {
+            // Show an error message or handle empty input
+            return;
+        }
+
+        List<String> remainingLines = new ArrayList<>();
+        boolean found = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("clienti.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("ClientFizic") && line.contains("codPersonal=" + idnpToDelete)) {
+                    found = true;
+                    continue; // Skip the line to be deleted
+                }
+                remainingLines.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (found) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("clienti.txt"))) {
+                for (String line : remainingLines) {
+                    writer.write(line);
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // Update the TableView
+            loadClientFizicData();
+        } else {
+            // Show an error message or handle case where the IDNP is not found
+        }
+    }
+
+    private void loadClientFizicData() {
+        ObservableList<ClientFizic> clientFizicList = FXCollections.observableArrayList();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("clienti.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("ClientFizic")) {
+                    ClientFizic clientFizic = parseClientFizic(line);
+                    if (clientFizic != null) {
+                        clientFizicList.add(clientFizic);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        clientFizicTableView.setItems(clientFizicList);
+    }
+
+
 
     private ClientFizic parseClientFizic(String line) {
         // Implement parsing logic for ClientFizic entry

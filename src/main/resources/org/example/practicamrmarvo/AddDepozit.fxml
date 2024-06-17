@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.practicamrmarvo.DepozitController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #E5D9B6;">
+         <children>
+            <AnchorPane prefHeight="111.0" prefWidth="1200.0" style="-fx-background-color: #285430;">
+               <children>
+                  <ImageView fx:id="homeButton" fitHeight="76.0" fitWidth="88.0" layoutX="14.0" layoutY="32.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/home-page-white-icon-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="109.0" fitWidth="110.0" layoutX="1077.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../Marvo-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="371.0" layoutY="43.0" text="Adaugă un depozit nou" textFill="WHITE">
+                     <font>
+                        <Font size="44.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label fx:id="tipLabel" layoutX="580.0" layoutY="134.0" text="Tip:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tipInput" layoutX="488.0" layoutY="195.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label fx:id="denumireLabel" layoutX="542.0" layoutY="240.0" text="Denumire:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="denumireInput" layoutX="488.0" layoutY="318.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label layoutX="522.0" layoutY="360.0" text="Procent anual:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorLabel2" layoutX="488.0" layoutY="503.0" prefHeight="25.0" prefWidth="224.0" textFill="red" />
+            <TextField fx:id="procentInput" layoutX="487.0" layoutY="429.0" prefHeight="25.0" prefWidth="224.0" />
+            <Button fx:id="saveDepozitButton" layoutX="491.0" layoutY="605.0" mnemonicParsing="false" onAction="#handleSaveDepozit" prefHeight="43.0" prefWidth="224.0" text="Submit" />
+            <Label fx:id="messageLabel" layoutX="510.0" layoutY="670.0" prefHeight="25.0" prefWidth="300" text="" textFill="GREEN">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="563.0" layoutY="498.0" text="Valuta:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="valutaInput" layoutX="491.0" layoutY="559.0" prefHeight="25.0" prefWidth="224.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
