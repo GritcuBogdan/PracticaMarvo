@@ -6,8 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
@@ -43,6 +42,18 @@ public class ShowDepozitController {
 
     @FXML
     private TableColumn<Depozit, String> valutaColumn;
+
+    @FXML
+    private Label denumireLabel;
+
+    @FXML
+    private TextField denumireDeleteInput;
+
+    @FXML
+    private Button submitButton;
+
+    @FXML
+    private Label editAccessLabel;  // Add this line
 
     @FXML
     private void backToHome() {
@@ -86,16 +97,71 @@ public class ShowDepozitController {
     @FXML
     private void enableEditing() {
         depozitTableView.setEditable(true);
+        editAccessLabel.setVisible(true);
+    }
+
+    @FXML
+    private void showDeleteControls() {
+        denumireLabel.setVisible(true);
+        denumireDeleteInput.setVisible(true);
+        submitButton.setVisible(true);
+    }
+
+    @FXML
+    private void deleteDepozit() {
+        String denumireToDelete = denumireDeleteInput.getText();
+        if (denumireToDelete == null || denumireToDelete.trim().isEmpty()) {
+            System.err.println("Denumire is empty. Cannot delete.");
+            return;
+        }
+
+        File inputFile = new File("depozite.txt");
+        File tempFile = new File("depozite_temp.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            boolean found = false;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("denumire=" + denumireToDelete + ",")) {
+                    found = true;  // Skip this line, do not write it to the temp file
+                } else {
+                    writer.write(line);
+                    writer.newLine();
+                }
+            }
+
+            if (!found) {
+                System.err.println("Denumire not found: " + denumireToDelete);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (inputFile.delete()) {
+            if (tempFile.renameTo(inputFile)) {
+                System.out.println("Depozit deleted successfully");
+                loadDepoziteFromFile();  // Reload the table to reflect the changes
+            } else {
+                System.err.println("Failed to rename temp file");
+            }
+        } else {
+            System.err.println("Failed to delete original file");
+        }
+
+        denumireDeleteInput.clear();
     }
 
     private void makeColumnsEditable() {
         denumireColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         denumireColumn.setOnEditCommit(event -> {
             Depozit depozit = event.getRowValue();
-            String oldValue = depozit.getDenumire();
+            String oldValue = event.getOldValue();  // Use the old value for matching
             depozit.setDenumire(event.getNewValue());
             System.out.println("Updated denumire from " + oldValue + " to " + event.getNewValue());
-            updateDepozitInFile(depozit);
+            updateDepozitInFile(oldValue, depozit);  // Pass old value to method
         });
 
         tipColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -104,7 +170,7 @@ public class ShowDepozitController {
             String oldValue = depozit.getTip();
             depozit.setTip(event.getNewValue());
             System.out.println("Updated tip from " + oldValue + " to " + event.getNewValue());
-            updateDepozitInFile(depozit);
+            updateDepozitInFile(depozit.getDenumire(), depozit);  // Use denumire for matching
         });
 
         procentColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
@@ -113,7 +179,7 @@ public class ShowDepozitController {
             double oldValue = depozit.getProcentAnual();
             depozit.setProcentAnual(event.getNewValue());
             System.out.println("Updated procentAnual from " + oldValue + " to " + event.getNewValue());
-            updateDepozitInFile(depozit);
+            updateDepozitInFile(depozit.getDenumire(), depozit);  // Use denumire for matching
         });
 
         valutaColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -122,11 +188,11 @@ public class ShowDepozitController {
             String oldValue = depozit.getValuta();
             depozit.setValuta(event.getNewValue());
             System.out.println("Updated valuta from " + oldValue + " to " + event.getNewValue());
-            updateDepozitInFile(depozit);
+            updateDepozitInFile(depozit.getDenumire(), depozit);  // Use denumire for matching
         });
     }
 
-    private void updateDepozitInFile(Depozit updatedDepozit) {
+    private void updateDepozitInFile(String oldDenumire, Depozit updatedDepozit) {
         File inputFile = new File("depozite.txt");
         File tempFile = new File("depozite_temp.txt");
 
@@ -136,7 +202,7 @@ public class ShowDepozitController {
             List<String> lines = reader.lines().collect(Collectors.toList());
 
             for (String line : lines) {
-                if (line.contains("denumire=" + updatedDepozit.getDenumire() + ",")) {
+                if (line.contains("denumire=" + oldDenumire + ",")) {
                     String newLine = "Depozit [tip=" + updatedDepozit.getTip() +
                             ", denumire=" + updatedDepozit.getDenumire() +
                             ", procent=" + updatedDepozit.getProcentAnual() +

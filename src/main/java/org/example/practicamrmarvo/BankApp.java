@@ -21,6 +21,9 @@ public class BankApp extends Application {
     }
 
     @FXML
+    private Button showContracte;
+
+    @FXML
     private Button showDepozite;
 
     @FXML
@@ -33,6 +36,9 @@ public class BankApp extends Application {
     private Button showFiliala;
     @FXML
     private Button showClienti;
+
+    @FXML
+    private Button addContract;
 
     @Override
     public void start(Stage primaryStage) {
@@ -98,6 +104,14 @@ public class BankApp extends Application {
             }
         });
 
+        addContract.setOnAction(e -> {
+            try{
+                switchToAdddContract();
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+
     }
 
 
@@ -143,6 +157,15 @@ public class BankApp extends Application {
     }
 
     @FXML
+    public void switchToShowContract() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowContracte.fxml"));
+        Parent root = loader.load();
+        ShowContracteController controller = loader.getController();
+        controller.setPrimaryStage(primaryStage);
+        primaryStage.getScene().setRoot(root);
+    }
+
+    @FXML
     private void showClienti() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowClienti.fxml"));
@@ -154,6 +177,15 @@ public class BankApp extends Application {
             System.out.println("Error loading ShowClienti.fxml");
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void switchToAdddContract()  throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddContract.fxml"));
+        Parent root = loader.load();
+        ContractController controller = loader.getController();
+        controller.setPrimaryStage(primaryStage);
+        primaryStage.getScene().setRoot(root);
     }
 
     @FXML

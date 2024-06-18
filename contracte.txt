@@ -1,0 +1,1 @@
+numarContract=2, data=2024-06-23, client=Bonca Ion, depozit=3, sumaTotala=12000,00, termen=12, procentDobanda=11,00

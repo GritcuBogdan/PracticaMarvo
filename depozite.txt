@@ -1,5 +1,1 @@
-Depozit [denumire=depozit 1, tip=fiscal, procent=10, valuta=EURO]
-Depozit [denumire=fasfas, tip=sfsafa, procent=11, valuta=fasfas]
-Depozit [denumire=asdasd, tip=fasfas, procent=12, valuta=cxzczxc]
-Depozit [denumire=fsaf, tip=fsa, procent=11, valuta=fsa]
-Depozit [denumire=dasda, tip=dsada, procent=13, valuta=dsad]
+Depozit [tip=fiscal, denumire=depozit2, procent=10.0, valuta=EURO]

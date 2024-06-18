@@ -2,17 +2,17 @@ package org.example.practicamrmarvo;
 
 import java.time.LocalDate;
 
-class Contract {
-    private String numarContract;
+public class Contract {
+    private String contractNumber;
     private LocalDate data;
-    private Client client;
-    private Depozit depozit;
+    private String client; // Representing client as a String
+    private String depozit; // Representing depozit as a String
     private double sumaTotala;
     private int termenPastrare;
     private double procentDobanda;
 
-    public Contract(String numarContract, LocalDate data, Client client, Depozit depozit, double sumaTotala, int termenPastrare, double procentDobanda) {
-        this.numarContract = numarContract;
+    public Contract(String contractNumber, LocalDate data, String client, String depozit, double sumaTotala, int termenPastrare, double procentDobanda) {
+        this.contractNumber = contractNumber;
         this.data = data;
         this.client = client;
         this.depozit = depozit;
@@ -21,12 +21,12 @@ class Contract {
         this.procentDobanda = procentDobanda;
     }
 
-    public String getNumarContract() {
-        return numarContract;
+    public String getContractNumber() {
+        return contractNumber;
     }
 
-    public void setNumarContract(String numarContract) {
-        this.numarContract = numarContract;
+    public void setContractNumber(String contractNumber) {
+        this.contractNumber = contractNumber;
     }
 
     public LocalDate getData() {
@@ -37,19 +37,19 @@ class Contract {
         this.data = data;
     }
 
-    public Client getClient() {
+    public String getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(String client) {
         this.client = client;
     }
 
-    public Depozit getDepozit() {
+    public String getDepozit() {
         return depozit;
     }
 
-    public void setDepozit(Depozit depozit) {
+    public void setDepozit(String depozit) {
         this.depozit = depozit;
     }
 
@@ -83,6 +83,6 @@ class Contract {
 
     @Override
     public String toString() {
-        return "Contract [numarContract=" + numarContract + ", data=" + data + ", client=" + client + ", depozit=" + depozit + ", sumaTotala=" + sumaTotala + ", termenPastrare=" + termenPastrare + ", procentDobanda=" + procentDobanda + "]";
+        return "Contract [numarContract=" + contractNumber + ", data=" + data + ", client=" + client + ", depozit=" + depozit + ", sumaTotala=" + sumaTotala + ", termenPastrare=" + termenPastrare + ", procentDobanda=" + procentDobanda + "]";
     }
 }

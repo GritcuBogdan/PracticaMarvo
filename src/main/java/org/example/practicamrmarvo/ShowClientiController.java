@@ -478,41 +478,58 @@ public class ShowClientiController {
 
 
     private ClientFizic parseClientFizic(String line) {
-        // Implement parsing logic for ClientFizic entry
-        // Example parsing logic (you may need to adjust this based on your actual data structure)
-        String[] tokens = line.substring(line.indexOf('[') + 1, line.indexOf(']')).split(", ");
-        String nume = "";
-        String codPersonal = "";
-        String adresa = "";
-        String telefon = "";
+        // Remove square brackets and split by commas
+        String data = line.substring(line.indexOf('[') + 1, line.indexOf(']')).trim();
+        String[] tokens = data.split(", ");
+
+        // Initialize variables to store parsed values
+        String nume = null;
+        String codPersonal = null;
+        String adresa = null;
+        String telefon = null;
         int numarDepozite = 0;
 
+        // Process each token to extract key-value pairs
         for (String token : tokens) {
             String[] keyValue = token.split("=");
-            switch (keyValue[0].trim()) {
-                case "nume":
-                    nume = keyValue[1];
-                    break;
-                case "codPersonal":
-                    codPersonal = keyValue[1];
-                    break;
-                case "adresa":
-                    adresa = keyValue[1];
-                    break;
-                case "telefon":
-                    telefon = keyValue[1];
-                    break;
-                case "numarDepozite":
-                    numarDepozite = Integer.parseInt(keyValue[1]);
-                    break;
-                default:
-                    // Handle unknown key
-                    break;
+            if (keyValue.length == 2) {
+                String key = keyValue[0].trim();
+                String value = keyValue[1].trim();
+                switch (key) {
+                    case "nume":
+                        nume = value;
+                        break;
+                    case "codPersonal":
+                        codPersonal = value;
+                        break;
+                    case "adresa":
+                        adresa = value;
+                        break;
+                    case "telefon":
+                        telefon = value;
+                        break;
+                    case "numarDepozite":
+                        try {
+                            numarDepozite = Integer.parseInt(value);
+                        } catch (NumberFormatException e) {
+                            System.err.println("Error parsing numarDepozite: " + e.getMessage());
+                        }
+                        break;
+                    default:
+                        // Handle unexpected keys or log them if necessary
+                        System.err.println("Unexpected key: " + key);
+                        break;
+                }
+            } else {
+                // Handle cases where the token doesn't split into key-value pairs correctly
+                System.err.println("Unexpected token format: " + token);
             }
         }
 
+        // Create and return a new ClientFizic object
         return new ClientFizic(nume, codPersonal, adresa, telefon, numarDepozite);
     }
+
 
     private ClientJuridic parseClientJuridic(String line) {
         // Implement parsing logic for ClientJuridic entry
